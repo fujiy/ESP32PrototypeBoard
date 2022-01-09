@@ -13338,6 +13338,49 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="switches">
+<packages>
+<package name="TVAF06-A020B-R">
+<smd name="P$1" x="0" y="2.225" dx="1.6" dy="1.05" layer="1"/>
+<smd name="P$2" x="0" y="-2.225" dx="1.6" dy="1.05" layer="1"/>
+<hole x="-0.9" y="0" drill="0.75"/>
+<hole x="0.9" y="0" drill="0.75"/>
+<wire x1="-1.45" y1="1.95" x2="1.45" y2="1.95" width="0.127" layer="21"/>
+<wire x1="1.45" y1="1.95" x2="1.45" y2="-1.95" width="0.127" layer="21"/>
+<wire x1="1.45" y1="-1.95" x2="-1.45" y2="-1.95" width="0.127" layer="21"/>
+<wire x1="-1.45" y1="-1.95" x2="-1.45" y2="1.95" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="SWITCH_1-1">
+<pin name="A" x="-7.62" y="0" visible="pad" length="middle"/>
+<pin name="B" x="7.62" y="0" visible="pad" length="middle" rot="R180"/>
+<circle x="-2.54" y="0" radius="0.508" width="0.254" layer="94"/>
+<circle x="2.54" y="0" radius="0.508" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="0" x2="2.54" y2="2.54" width="0.254" layer="94"/>
+<text x="-5.08" y="5.08" size="1.778" layer="95">&gt;NAME</text>
+<text x="-5.08" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TVAF06-A020B-R">
+<gates>
+<gate name="G$1" symbol="SWITCH_1-1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TVAF06-A020B-R">
+<connects>
+<connect gate="G$1" pin="A" pad="P$1"/>
+<connect gate="G$1" pin="B" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -13384,6 +13427,8 @@ Source: www.kingbright.com</description>
 <part name="GND11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="1k"/>
 <part name="J2" library="connector" deviceset="MICRO_USB_B_HIROSE_ZX62-B-5PA(11)" device="MODEL" package3d_urn="urn:adsk.eagle:package:6644353/2"/>
+<part name="U$2" library="switches" deviceset="TVAF06-A020B-R" device=""/>
+<part name="GND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13522,6 +13567,13 @@ Source: www.kingbright.com</description>
 <attribute name="NAME" x="-76.2" y="44.45" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-76.2" y="63.5" size="1.778" layer="95" rot="R180"/>
 </instance>
+<instance part="U$2" gate="G$1" x="-12.7" y="-40.64" smashed="yes" rot="R270">
+<attribute name="NAME" x="-10.16" y="-35.56" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="-17.78" y="-33.02" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="GND12" gate="1" x="-12.7" y="-50.8" smashed="yes">
+<attribute name="VALUE" x="-15.24" y="-53.34" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -13604,6 +13656,10 @@ Source: www.kingbright.com</description>
 <segment>
 <pinref part="LED" gate="G$1" pin="C"/>
 <pinref part="GND11" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U$2" gate="G$1" pin="B"/>
+<pinref part="GND12" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="VDD" class="0">
@@ -13759,7 +13815,10 @@ Source: www.kingbright.com</description>
 <wire x1="-27.94" y1="-33.02" x2="-27.94" y2="-35.56" width="0.1524" layer="91"/>
 <pinref part="C7" gate="G$1" pin="1"/>
 <label x="-10.16" y="-33.02" size="1.778" layer="95" xref="yes"/>
-<wire x1="-27.94" y1="-33.02" x2="-10.16" y2="-33.02" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="-33.02" x2="-12.7" y2="-33.02" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="A"/>
+<wire x1="-12.7" y1="-33.02" x2="-10.16" y2="-33.02" width="0.1524" layer="91"/>
+<junction x="-12.7" y="-33.02"/>
 </segment>
 </net>
 <net name="IO0" class="0">
